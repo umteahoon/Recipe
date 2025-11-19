@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Recipe {
   id: number;
@@ -47,7 +48,10 @@ const RecommendedRecipes = () => {
 
   const [likedRecipes, setLikedRecipes] = useState<Set<number>>(new Set());
 
-  const handleLike = (recipeId: number) => {
+  const handleLike = (e: React.MouseEvent, recipeId: number) => {
+    e.preventDefault(); // Link 클릭 방지
+    e.stopPropagation(); // 이벤트 버블링 방지
+    
     const newLikedRecipes = new Set(likedRecipes);
     const newRecipes = recipes.map(recipe => {
       if (recipe.id === recipeId) {
@@ -76,7 +80,7 @@ const RecommendedRecipes = () => {
         
         <div className="recipe-grid">
           {recipes.map((recipe) => (
-            <div key={recipe.id} className="recipe-card fade-in">
+            <Link key={recipe.id} to={`/recipe/${recipe.id}`} className="recipe-card fade-in" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="recipe-image">
                 <img src={recipe.image} alt={recipe.title} />
               </div>
@@ -89,14 +93,14 @@ const RecommendedRecipes = () => {
                   </span>
                   <button 
                     className={`recipe-like ${likedRecipes.has(recipe.id) ? 'active' : ''}`}
-                    onClick={() => handleLike(recipe.id)}
+                    onClick={(e) => handleLike(e, recipe.id)}
                   >
                     <i className={likedRecipes.has(recipe.id) ? 'fas fa-heart' : 'far fa-heart'}></i> 
                     <span>{recipe.likes}</span>
                   </button>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -19,21 +20,21 @@ const Footer = () => {
           <div className="footer-links">
             <h3>사이트 맵</h3>
             <ul>
-              <li><a href="#">홈</a></li>
-              <li><a href="#">레시피 목록</a></li>
-              <li><a href="#">인기 레시피</a></li>
-              <li><a href="#">계절별 요리</a></li>
-              <li><a href="#">커뮤니티</a></li>
+              <li><Link to="/">홈</Link></li>
+              <li><Link to="/recipes">레시피 목록</Link></li>
+              <li><Link to="/popular">인기 레시피</Link></li>
+              <li><Link to="/seasonal">계절별 요리</Link></li>
+              <li><Link to="/community">커뮤니티</Link></li>
             </ul>
           </div>
           
           <div className="footer-links">
             <h3>고객 지원</h3>
             <ul>
-              <li><a href="#">자주 묻는 질문</a></li>
-              <li><a href="#">문의하기</a></li>
-              <li><a href="#">이용약관</a></li>
-              <li><a href="#">개인정보 처리방침</a></li>
+              <li><Link to="/faq">자주 묻는 질문</Link></li>
+              <li><Link to="/contact">문의하기</Link></li>
+              <li><Link to="/terms">이용약관</Link></li>
+              <li><Link to="/privacy">개인정보 처리방침</Link></li>
             </ul>
           </div>
           
